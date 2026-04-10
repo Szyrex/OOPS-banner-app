@@ -1,0 +1,259 @@
+Week-7,8-practice problem
+
+
+Level-1;
+Q1-
+import java.util.Scanner;
+
+public class SimpleInterest {
+    
+    static double calculateSI(double p, double r, double t) {
+        return (p * r * t) / 100;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter Principal: ");
+        double p = sc.nextDouble();
+
+        System.out.print("Enter Rate: ");
+        double r = sc.nextDouble();
+
+        System.out.print("Enter Time: ");
+        double t = sc.nextDouble();
+
+        double si = calculateSI(p, r, t);
+
+        System.out.println("The Simple Interest is " + si +
+                " for Principal " + p +
+                ", Rate " + r +
+                " and Time " + t);
+
+        sc.close();
+    }
+}
+
+Q4-
+
+import java.util.Scanner;
+
+public class NumberCheck {
+
+    static int checkNumber(int num) {
+        if (num > 0)
+            return 1;
+        else if (num < 0)
+            return -1;
+        else
+            return 0;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a number: ");
+        int num = sc.nextInt();
+
+        int result = checkNumber(num);
+
+        if (result == 1)
+            System.out.println("Positive number");
+        else if (result == -1)
+            System.out.println("Negative number");
+        else
+            System.out.println("Zero");
+
+        sc.close();
+    }
+}
+
+Q7-
+
+import java.util.Scanner;
+
+public class MinMax {
+
+    static void findMinMax(int a, int b, int c) {
+
+        int min = a;
+        int max = a;
+
+        if (b < min) min = b;
+        if (c < min) min = c;
+
+        if (b > max) max = b;
+        if (c > max) max = c;
+
+        System.out.println("Smallest number: " + min);
+        System.out.println("Largest number: " + max);
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter three numbers: ");
+        int a = sc.nextInt();
+        int b = sc.nextInt();
+        int c = sc.nextInt();
+
+        findMinMax(a, b, c);
+
+        sc.close();
+    }
+}
+
+LEVEL-2
+Q3-
+
+import java.util.Scanner;
+
+public class LeapYear {
+
+    static boolean isLeapYear(int year) {
+        if (year < 1582) {
+            return false; // invalid for Gregorian calendar
+        }
+
+        if ((year % 4 == 0 && year % 100 != 0) || (year % 400 == 0)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a year: ");
+        int year = sc.nextInt();
+
+        if (isLeapYear(year)) {
+            System.out.println("Leap Year");
+        } else {
+            System.out.println("Not a Leap Year");
+        }
+
+        sc.close();
+    }
+}
+Q8-
+
+import java.util.Scanner;
+
+public class FriendsAnalysis {
+
+    static int findYoungest(int[] ages) {
+        int index = 0;
+        for (int i = 1; i < ages.length; i++) {
+            if (ages[i] < ages[index]) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    static int findTallest(double[] heights) {
+        int index = 0;
+        for (int i = 1; i < heights.length; i++) {
+            if (heights[i] > heights[index]) {
+                index = i;
+            }
+        }
+        return index;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        String[] names = {"Amar", "Akbar", "Anthony"};
+        int[] ages = new int[3];
+        double[] heights = new double[3];
+
+        // Input
+        for (int i = 0; i < 3; i++) {
+            System.out.println("Enter details for " + names[i]);
+
+            System.out.print("Age: ");
+            ages[i] = sc.nextInt();
+
+            System.out.print("Height: ");
+            heights[i] = sc.nextDouble();
+        }
+
+        int youngest = findYoungest(ages);
+        int tallest = findTallest(heights);
+
+        // Output
+        System.out.println("\nYoungest friend: " + names[youngest]);
+        System.out.println("Tallest friend: " + names[tallest]);
+
+        sc.close();
+    }
+}
+
+LEVEL-3
+Q1-
+
+import java.util.Random;
+
+public class FootballHeights {
+
+    // Method to find sum
+    static double findSum(double[] arr) {
+        double sum = 0;
+        for (int i = 0; i < arr.length; i++) {
+            sum += arr[i];
+        }
+        return sum;
+    }
+
+    // Method to find mean
+    static double findMean(double[] arr) {
+        return findSum(arr) / arr.length;
+    }
+
+    // Method to find shortest
+    static double findShortest(double[] arr) {
+        double min = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] < min) {
+                min = arr[i];
+            }
+        }
+        return min;
+    }
+
+    // Method to find tallest
+    static double findTallest(double[] arr) {
+        double max = arr[0];
+        for (int i = 1; i < arr.length; i++) {
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+        }
+        return max;
+    }
+
+    public static void main(String[] args) {
+
+        double[] heights = new double[11];
+        Random rand = new Random();
+
+        // Generate random heights (150–250 cm)
+        for (int i = 0; i < heights.length; i++) {
+            heights[i] = 150 + rand.nextInt(101); // 150 to 250
+        }
+
+        // Display heights
+        System.out.println("Player Heights:");
+        for (double h : heights) {
+            System.out.print(h + " ");
+        }
+
+        // Results
+        System.out.println("\n\nMean Height: " + findMean(heights));
+        System.out.println("Shortest Height: " + findShortest(heights));
+        System.out.println("Tallest Height: " + findTallest(heights));
+    }
+}
