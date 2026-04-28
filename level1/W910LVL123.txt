@@ -1,0 +1,394 @@
+Week-9,10-practice problem
+
+
+Level-1:
+
+Q1-
+
+import java.util.Scanner;
+
+public class StringCompare {
+
+    // Method to compare using charAt()
+    static boolean compareUsingCharAt(String s1, String s2) {
+
+        // If lengths differ → not equal
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        // Compare character by character
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter first string: ");
+        String str1 = sc.next();
+
+        System.out.print("Enter second string: ");
+        String str2 = sc.next();
+
+        // Using charAt()
+        boolean result1 = compareUsingCharAt(str1, str2);
+
+        // Using built-in equals()
+        boolean result2 = str1.equals(str2);
+
+        // Display results
+        System.out.println("Result using charAt(): " + result1);
+        System.out.println("Result using equals(): " + result2);
+
+        // Check if both results match
+        if (result1 == result2) {
+            System.out.println("Both methods give the SAME result.");
+        } else {
+            System.out.println("Results are DIFFERENT.");
+        }
+
+        sc.close();
+    }
+}
+Q2-
+
+import java.util.Scanner;
+
+public class SubstringCompare {
+
+    // Create substring using charAt()
+    static String createSubstring(String str, int start, int end) {
+        String result = "";
+
+        for (int i = start; i < end; i++) {
+            result += str.charAt(i);
+        }
+
+        return result;
+    }
+
+    // Compare two strings using charAt()
+    static boolean compareStrings(String s1, String s2) {
+
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        for (int i = 0; i < s1.length(); i++) {
+            if (s1.charAt(i) != s2.charAt(i)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a string: ");
+        String str = sc.next();
+
+        System.out.print("Enter start index: ");
+        int start = sc.nextInt();
+
+        System.out.print("Enter end index: ");
+        int end = sc.nextInt();
+
+        // Using charAt()
+        String sub1 = createSubstring(str, start, end);
+
+        // Using built-in method
+        String sub2 = str.substring(start, end);
+
+        // Compare results
+        boolean isSame = compareStrings(sub1, sub2);
+
+        // Output
+        System.out.println("Substring using charAt(): " + sub1);
+        System.out.println("Substring using substring(): " + sub2);
+
+        if (isSame) {
+            System.out.println("Both substrings are SAME.");
+        } else {
+            System.out.println("Substrings are DIFFERENT.");
+        }
+
+        sc.close();
+    }
+}
+Q3-
+
+import java.util.Scanner;
+
+public class CharArrayCompare {
+
+    // User-defined method (without using toCharArray)
+    static char[] getCharsManually(String str) {
+        char[] arr = new char[str.length()];
+
+        for (int i = 0; i < str.length(); i++) {
+            arr[i] = str.charAt(i);
+        }
+
+        return arr;
+    }
+
+    // Method to compare two char arrays
+    static boolean compareArrays(char[] a, char[] b) {
+
+        if (a.length != b.length) {
+            return false;
+        }
+
+        for (int i = 0; i < a.length; i++) {
+            if (a[i] != b[i]) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a string: ");
+        String str = sc.next();
+
+        // User-defined method
+        char[] arr1 = getCharsManually(str);
+
+        // Built-in method
+        char[] arr2 = str.toCharArray();
+
+        // Compare
+        boolean result = compareArrays(arr1, arr2);
+
+        // Display arrays
+        System.out.print("Manual char array: ");
+        for (char c : arr1) {
+            System.out.print(c + " ");
+        }
+
+        System.out.print("\nBuilt-in char array: ");
+        for (char c : arr2) {
+            System.out.print(c + " ");
+        }
+
+        // Result
+        if (result) {
+            System.out.println("\nBoth arrays are SAME.");
+        } else {
+            System.out.println("\nArrays are DIFFERENT.");
+        }
+
+        sc.close();
+    }
+}
+
+LEVEL2:
+
+Q1-
+
+import java.util.Scanner;
+
+public class StringLengthFinder {
+
+    // User-defined method (without using length())
+    static int findLength(String str) {
+        int count = 0;
+
+        try {
+            while (true) {
+                str.charAt(count); // keep accessing characters
+                count++;
+            }
+        } catch (Exception e) {
+            // Exception occurs when index is out of bounds
+        }
+
+        return count;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a string: ");
+        String str = sc.next();
+
+        // User-defined length
+        int customLength = findLength(str);
+
+        // Built-in length
+        int actualLength = str.length();
+
+        // Output
+        System.out.println("Length using custom method: " + customLength);
+        System.out.println("Length using built-in method: " + actualLength);
+
+        sc.close();
+    }
+}
+
+Q5-
+
+import java.util.Scanner;
+
+public class VowelConsonantCount {
+
+    // Method to check character type
+    static String checkChar(char ch) {
+
+        // Convert uppercase to lowercase using ASCII
+        if (ch >= 'A' && ch <= 'Z') {
+            ch = (char)(ch + 32);
+        }
+
+        // Check if letter
+        if (ch >= 'a' && ch <= 'z') {
+
+            if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                return "Vowel";
+            } else {
+                return "Consonant";
+            }
+        }
+
+        return "Not a Letter";
+    }
+
+    // Method to count vowels and consonants
+    static int[] countVC(String str) {
+
+        int vowels = 0;
+        int consonants = 0;
+
+        for (int i = 0; i < str.length(); i++) {
+
+            char ch = str.charAt(i);
+            String result = checkChar(ch);
+
+            if (result.equals("Vowel")) {
+                vowels++;
+            } else if (result.equals("Consonant")) {
+                consonants++;
+            }
+        }
+
+        return new int[]{vowels, consonants};
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a string: ");
+        String str = sc.next();
+
+        int[] result = countVC(str);
+
+        // Output
+        System.out.println("Number of Vowels: " + result[0]);
+        System.out.println("Number of Consonants: " + result[1]);
+
+        sc.close();
+    }
+}
+
+LEVEL-3:
+
+Q2-
+
+import java.util.Scanner;
+
+public class UniqueCharacters {
+
+    // Method to find length without using length()
+    static int findLength(String str) {
+        int count = 0;
+
+        try {
+            while (true) {
+                str.charAt(count);
+                count++;
+            }
+        } catch (Exception e) {
+            // end reached
+        }
+
+        return count;
+    }
+
+    // Method to find unique characters
+    static char[] getUniqueChars(String str) {
+
+        int len = findLength(str);
+        char[] temp = new char[len];
+        int index = 0;
+
+        // Outer loop
+        for (int i = 0; i < len; i++) {
+
+            char current = str.charAt(i);
+            boolean isUnique = true;
+
+            // Inner loop (check previous characters)
+            for (int j = 0; j < i; j++) {
+                if (current == str.charAt(j)) {
+                    isUnique = false;
+                    break;
+                }
+            }
+
+            // Store if unique
+            if (isUnique) {
+                temp[index] = current;
+                index++;
+            }
+        }
+
+        // Create final array of exact size
+        char[] result = new char[index];
+        for (int i = 0; i < index; i++) {
+            result[i] = temp[i];
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        // Input
+        System.out.print("Enter a string: ");
+        String str = sc.next();
+
+        // Get unique characters
+        char[] unique = getUniqueChars(str);
+
+        // Output
+        System.out.print("Unique characters: ");
+        for (char c : unique) {
+            System.out.print(c + " ");
+        }
+
+        sc.close();
+    }
+}
